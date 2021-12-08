@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple SQL Editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='css/logo.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            background-image: url("https://wallpapercave.com/uwp/uwp1338511.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container{
+            background-image: url("https://raw.githubusercontent.com/Atharv-Chaudhari/Simple-MySql-Editor/3565ab8216aa8c389b946e426fed899aeb3426ea/back.jpg");
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align:center;">Simple SQL Editor</h1>
+        <h2 style="text-align:center;color:#800000;">Please Enter Your Queries Here</h2>
+        <form action="{{ url_for('display')}}" method="post" style="text-align:center;">
+            <h2 style="text-align: center;color: blue;">Enter First query</h2>
+            <textarea style="max-width: 70%;" type="text" name="Query1" cols="40" rows="5"></textarea>
+            <br>
+            <h2 style="text-align: center;color: blue;">Enter Second query</h2>
+            <textarea style="max-width: 70%;" type="text" name="Query2" cols="40" rows="5"></textarea>
+            <br>
+            <h2 style="text-align: center;color: blue;">Enter Third query</h2>
+            <textarea style="max-width: 70%;" type="text" name="Query3" cols="40" rows="5"></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <h2 style="text-align: center;color:#0000CD;">Current Database Structure</h2>
+        {% for k in range(n) %}
+        <h3 style="text-align: center;color:red;">{{table[k][0]}}</h3>
+        <table style="max-width:70%;text-align:center;margin-left: auto;margin-right: auto;">
+            <tr>
+                {% for j in column[k] %}
+                <th style="text-align: center;">{{j[0]}}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for i in data[k] %}
+            <tr>
+                {% for x in i %}
+                <td style="text-align: center;">{{x}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+</body>
+</html>
